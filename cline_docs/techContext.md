@@ -3,100 +3,148 @@
 ## Technology Stack
 
 ### Core Components
-- VSCode/VSCodium Base Installation
-- X11 Display Server
-- Roo Extension v3.7.11
-- Systemd Services
+1. VSCode/VSCodium
+   - Version: Latest stable
+   - Extensions: Roo v3.7.11
+   - Memory limit: 3072MB
+   - Display server: X11
 
-### Development Environment
-- Linux 6.1
-- Bash Shell
-- Node.js (for VSCode extensions)
-- X11 Display Configuration
+2. GNOME Keyring
+   - Components: secrets
+   - Integration: libsecret
+   - Authentication: PAM
+   - Storage: encrypted
 
-### Team Workspaces
-- NovaOps: /data-nova/ax/NovaOps
-- DataOps: /data-nova/ax/DataOps
+3. Systemd Services
+   - Process management
+   - Service orchestration
+   - Resource control
+   - State monitoring
+
+### Infrastructure
+1. Display Server
+   - X11/Xorg
+   - DISPLAY=:20
+   - XAUTHORITY path
+   - Window management
+
+2. File System
+   - User data: ~/.config/Code-Isolated/
+   - Extensions: ~/.vscode-isolated/
+   - Workspaces: /data-nova/ax/
+   - Keyring: ~/.local/share/keyrings/
+
+3. Process Management
+   - Systemd units
+   - Service dependencies
+   - Resource limits
+   - Restart policies
 
 ## Development Setup
 
-### VSCode Instance Configuration
+### Environment Variables
 ```bash
-# Base Configuration
 DISPLAY=:20
 XAUTHORITY=/home/x/.Xauthority
-
-# Instance-specific paths
-USER_DATA_DIR=/home/x/.config/Code-Isolated/{instance}
-EXTENSIONS_DIR=/home/x/.vscode-isolated/{instance}/extensions
-
-# Resource limits
-MAX_MEMORY=3072
 ```
 
 ### Directory Structure
 ```
 /home/x/
-├── .config/
-│   └── Code-Isolated/
-│       ├── vaeris/
-│       └── theseus/
+├── .config/Code-Isolated/
+│   ├── vaeris/
+│   └── theseus/
 └── .vscode-isolated/
-    ├── vaeris/
-    │   └── extensions/
-    └── theseus/
-        └── extensions/
+    ├── vaeris/extensions/
+    └── theseus/extensions/
+
+/data-nova/ax/
+├── NovaOps/
+└── DataOps/
+```
+
+### Service Configuration
+```
+/etc/systemd/system/
+├── gnome-keyring.service
+├── code-vaeris.service
+├── code-theseus.service
+└── vscode-instances.target
 ```
 
 ## Technical Constraints
 
-### Resource Limitations
-- Memory: 3072MB per instance
-- Display: Single X11 server
-- Extension isolation requirements
+### Resource Limits
+1. Memory
+   - VSCode: 3072MB per instance
+   - Extensions: Shared allocation
+   - Keyring: System default
 
-### Known Issues
-1. VSCode crashes during Roo extension activation
-2. Memory management under investigation
-3. Extension loading stability
+2. Process
+   - One instance per team
+   - Isolated extension spaces
+   - Shared display server
+   - Independent workspaces
 
-### Integration Requirements
-1. Extension compatibility
-2. Workspace isolation
-3. Resource sharing controls
-4. Crash recovery mechanisms
+### Security
+1. Authentication
+   - Keyring integration
+   - PAM configuration
+   - Secret storage
+   - Access control
 
-## Development Constraints
+2. Isolation
+   - Process separation
+   - Extension sandboxing
+   - Workspace boundaries
+   - Resource limits
 
-### Extension Management
-- Direct copy approach required
-- No shared extension state
-- Version compatibility checks needed
+### Performance
+1. Startup
+   - Service dependencies
+   - Extension loading
+   - Resource allocation
+   - State initialization
 
-### Process Isolation
-- Separate user data directories
-- Independent extension spaces
-- Resource limit enforcement
+2. Runtime
+   - Memory management
+   - Process monitoring
+   - Crash recovery
+   - Resource optimization
 
-### Monitoring Requirements
-1. Process health tracking
-2. Memory usage monitoring
-3. Crash detection
-4. Extension state verification
+## Integration Requirements
 
-## Future Considerations
+### Service Dependencies
+1. Display Server
+   - X11 availability
+   - Window management
+   - Resource sharing
+   - Access control
 
-### Technical Improvements
-1. Extension preloading system
-2. Dynamic resource allocation
-3. Enhanced crash recovery
-4. Automated workspace setup
+2. Authentication
+   - GNOME keyring
+   - Secret storage
+   - PAM modules
+   - Access tokens
 
-### Integration Enhancements
-1. Team-specific configurations
-2. Workspace templates
-3. Resource optimization
-4. Monitoring dashboards
+3. File System
+   - Directory permissions
+   - Path isolation
+   - Workspace access
+   - Configuration files
 
-Last Updated: 2025-03-02 12:45 MST
+### Monitoring
+1. Service Health
+   - Process status
+   - Resource usage
+   - Error logging
+   - Performance metrics
+
+2. Integration Points
+   - Keyring status
+   - Extension health
+   - Workspace access
+   - Resource allocation
+
+Last Updated: 2025-03-02 12:58 MST
 Author: Forge

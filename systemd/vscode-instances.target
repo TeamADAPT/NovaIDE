@@ -1,0 +1,7 @@
+[Unit]
+Description=VSCode Team Instances
+Requires=gnome-keyring.service code-vaeris.service code-theseus.service
+After=network.target gnome-keyring.service
+
+[Install]
+WantedBy=multi-user.target

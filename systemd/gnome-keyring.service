@@ -1,0 +1,15 @@
+[Unit]
+Description=GNOME Keyring Daemon
+After=display-manager.service
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+User=x
+Environment=DISPLAY=:20
+Environment=XAUTHORITY=/home/x/.Xauthority
+ExecStart=/usr/bin/gnome-keyring-daemon --start --foreground --components=secrets
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

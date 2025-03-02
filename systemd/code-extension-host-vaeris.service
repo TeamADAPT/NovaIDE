@@ -1,0 +1,15 @@
+[Unit]
+Description=VSCode Extension Host for Vaeris
+After=code-vaeris.service
+
+[Service]
+Type=simple
+User=x
+Group=x
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/code --type=extensionHost --user-data-dir=/home/x/.config/Code-Isolated/vaeris --extensions-dir=/home/x/.vscode-isolated/vaeris
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

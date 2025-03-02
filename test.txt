@@ -1,0 +1,7 @@
+This is a test file for VSCode instance isolation.
+
+Testing:
+1. Window titles
+2. Process isolation
+3. Extension host separation
+4. Resource limits

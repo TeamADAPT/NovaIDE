@@ -1,5 +1,78 @@
 # Operations History
 
+## 2025-03-02 12:57 MST - VSCode Keyring Integration
+**Author**: Forge
+**Status**: Implemented
+**Priority**: High
+
+### Implementation
+1. Created systemd services for GNOME keyring and VSCode instances:
+   - gnome-keyring.service: Keyring daemon
+   - code-vaeris.service: NovaOps VSCode instance
+   - code-theseus.service: DataOps VSCode instance
+   - vscode-instances.target: Service orchestration
+
+2. Service Dependencies:
+   - VSCode instances depend on keyring service
+   - All services require display server access
+   - Unified target for service management
+
+3. Documentation:
+   - Setup guide: docs/250302_VSCode_Keyring_Setup.md
+   - Service configurations in systemd/
+   - Updated technical documentation
+
+### Technical Details
+- Environment Variables:
+  * DISPLAY=:20
+  * XAUTHORITY=/home/x/.Xauthority
+- Service User: x
+- Keyring Components: secrets
+- Instance Paths:
+  * Vaeris: /data-nova/ax/NovaOps
+  * Theseus: /data-nova/ax/DataOps
+
+### Next Steps
+1. Deploy services
+2. Monitor keyring stability
+3. Test extension functionality
+4. Document any issues
+
+---
+
+## 2025-03-02 12:52 MST - VSCode Keychain Issue Resolution
+**Author**: Forge
+**Status**: In Progress
+**Priority**: High
+
+### Issue
+VSCode instances crashed after displaying GNOME keychain error message:
+- Error occurred when launching VSCode with Roo extension
+- Message indicated missing keychain in GNOME environment
+- Both instances crashed after approximately 10 seconds
+
+### Solution
+Added DISABLE_KEYTAR=1 environment variable to VSCode launch command to bypass keychain requirement:
+```bash
+DISABLE_KEYTAR=1 code --user-data-dir=/home/x/.config/Code-Isolated/{instance} \
+  --extensions-dir=/home/x/.vscode-isolated/{instance}/extensions \
+  /data-nova/ax/{team_dir}
+```
+
+### Technical Details
+- Environment: GNOME desktop
+- VSCode Extension: rooveterinaryinc.roo-cline-3.7.11
+- Instance Paths:
+  * Vaeris: /data-nova/ax/NovaOps
+  * Theseus: /data-nova/ax/DataOps
+
+### Next Steps
+1. Monitor VSCode stability with disabled keytar
+2. Consider implementing alternative secret storage
+3. Document keychain configuration for future setups
+
+---
+
 ## 2025-03-02 12:43 MST - VSCode Team Instance Setup and Crash Investigation
 **Author**: Forge
 **Status**: In Progress

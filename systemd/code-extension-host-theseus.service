@@ -1,0 +1,15 @@
+[Unit]
+Description=VSCode Extension Host for Theseus
+After=code-theseus.service
+
+[Service]
+Type=simple
+User=x
+Group=x
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/code --type=extensionHost --user-data-dir=/home/x/.config/Code-Isolated/theseus --extensions-dir=/home/x/.vscode-isolated/theseus
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

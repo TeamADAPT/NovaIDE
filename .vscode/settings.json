@@ -27,10 +27,13 @@
   "terminal.integrated.persistentSessionReviveProcess": "never",
   "terminal.integrated.allowChords": true,
   "terminal.integrated.copyOnSelection": true,
-  "terminal.integrated.enableBell": false,
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.gpuAcceleration": "on",
   "terminal.integrated.rightClickBehavior": "selectWord",
   "terminal.integrated.scrollback": 10000,
-  "terminal.integrated.shellIntegration.enabled": true
+  "terminal.integrated.shellIntegration.enabled": true,
+  "accessibility.signals.terminalBell": {
+    "sound": "off"
+  },
+  "terminal.integrated.enableVisualBell": false
 }

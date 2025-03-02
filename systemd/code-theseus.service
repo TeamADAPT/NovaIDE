@@ -1,0 +1,20 @@
+[Unit]
+Description=VSCode Instance - Theseus (DataOps)
+After=network.target gnome-keyring.service
+Requires=gnome-keyring.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=x
+Environment=DISPLAY=:20
+Environment=XAUTHORITY=/home/x/.Xauthority
+ExecStart=/usr/bin/code \
+    --user-data-dir=/home/x/.config/Code-Isolated/theseus \
+    --extensions-dir=/home/x/.vscode-isolated/theseus/extensions \
+    /data-nova/ax/DataOps
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

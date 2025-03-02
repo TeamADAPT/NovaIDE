@@ -1,75 +1,116 @@
 # System Patterns
 
-## Architecture Patterns
+## Service Architecture
+- Systemd-based service management
+- Hierarchical service dependencies
+- Isolated process spaces
+- Unified target for orchestration
 
-### VSCode Instance Isolation
-- Separate user data directories
-  * Vaeris: /home/x/.config/Code-Isolated/vaeris
-  * Theseus: /home/x/.config/Code-Isolated/theseus
+### Service Components
+1. GNOME Keyring Service
+   - Provides secret storage
+   - Required by VSCode instances
+   - Single daemon per display
+   - Components: secrets
 
-- Isolated extension directories
-  * Vaeris: /home/x/.vscode-isolated/vaeris/extensions
-  * Theseus: /home/x/.vscode-isolated/theseus/extensions
+2. VSCode Instances
+   - Team-specific isolation
+   - Resource constraints
+   - Extension isolation
+   - Workspace separation
 
-### Team Workspace Organization
-- Team-specific directories
-  * NovaOps: /data-nova/ax/NovaOps
-  * DataOps: /data-nova/ax/DataOps
+3. Service Target
+   - Unified management
+   - Dependency handling
+   - Startup orchestration
+   - Resource coordination
 
-### Resource Management
-- Memory limits: 3072MB per instance
-- Extension loading controls
-- Crash recovery mechanisms
+## Integration Points
+1. Display Server
+   - DISPLAY=:20
+   - XAUTHORITY path
+   - Window management
+   - Resource sharing
+
+2. File System
+   - User data directories
+   - Extension directories
+   - Workspace paths
+   - Configuration files
+
+3. System Services
+   - Keyring daemon
+   - Display server
+   - Process management
+   - Resource control
 
 ## Technical Decisions
 
-### Extension Management
-1. Copy approach vs. symlink
-   - Decision: Direct copy of extensions
-   - Rationale: Better isolation, prevents shared state issues
-   - Impact: Higher disk usage, but cleaner separation
+### Process Isolation
+1. User Data
+   ```
+   /home/x/.config/Code-Isolated/{instance}/
+   ```
 
-2. Memory Configuration
-   - Setting: --max-memory=3072
-   - Purpose: Prevent memory exhaustion
-   - Status: Under evaluation due to crashes
+2. Extensions
+   ```
+   /home/x/.vscode-isolated/{instance}/extensions/
+   ```
 
-3. Display Configuration
-   - DISPLAY=:20
-   - XAUTHORITY=/home/x/.Xauthority
-   - Purpose: Consistent X11 access
+3. Workspaces
+   ```
+   /data-nova/ax/{team}/
+   ```
 
-## Integration Points
+### Service Dependencies
+```mermaid
+graph TD
+    A[vscode-instances.target] --> B[gnome-keyring.service]
+    A --> C[code-vaeris.service]
+    A --> D[code-theseus.service]
+    C --> B
+    D --> B
+```
 
-### Extension Integration
-- Roo Extension (v3.7.11)
-  * Source: /home/x/.vscode/extensions/
-  * Target: Isolated extension directories
-  * Status: Experiencing stability issues
+### Resource Management
+1. Memory Limits
+   - VSCode: 3072MB per instance
+   - Extensions: Shared allocation
+   - Keyring: System managed
 
-### System Services
-- X11 Display Server
-- VSCode/VSCodium base installation
-- Team workspace mounts
+2. Process Control
+   - Automatic restart
+   - Failure recovery
+   - Resource monitoring
+   - State management
 
 ## Evolution Paths
 
-### Current State
-- Basic workspace isolation
-- Extension copying mechanism
-- Resource limits implemented
+### Near Term
+1. Service Stability
+   - Crash prevention
+   - Extension preloading
+   - Resource optimization
+   - Monitoring enhancement
 
-### Next Evolution
-1. Stable extension integration
-2. Automated crash recovery
-3. Enhanced monitoring
-4. Resource optimization
+2. User Experience
+   - Startup performance
+   - Extension reliability
+   - Workspace integration
+   - Team coordination
 
-### Future Considerations
-1. Dynamic resource allocation
-2. Extension preloading
-3. Workspace templates
-4. Team-specific configurations
+### Long Term
+1. Automation
+   - Service deployment
+   - Configuration management
+   - Resource scaling
+   - Backup handling
 
-Last Updated: 2025-03-02 12:44 MST
+2. Integration
+   - Team services
+   - Monitoring systems
+   - Backup solutions
+   - Security enhancements
+
+Last Updated: 2025-03-02 12:58 MST
 Author: Forge

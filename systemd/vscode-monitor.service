@@ -1,0 +1,17 @@
+[Unit]
+Description=VSCode Nova Instance Monitor
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=x
+WorkingDirectory=/data-nova/ax/DevOps/DevOps-VSC/NovaIDE
+ExecStart=/data-nova/ax/DevOps/DevOps-VSC/NovaIDE/src/monitoring/vscode_monitor.sh vaeris theseus
+StandardOutput=append:/data-nova/ax/DevOps/logs/vscode/monitor_stdout.log
+StandardError=append:/data-nova/ax/DevOps/logs/vscode/monitor_stderr.log
+
+[Install]
+WantedBy=multi-user.target
