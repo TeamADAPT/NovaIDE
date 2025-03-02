@@ -85,12 +85,14 @@ novaide/
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js v20+
 - Redis 7.x
 - Docker & Kubernetes
 - VSCodium source
 
 ### Development Setup
+
 1. Clone repository
 2. Install dependencies
 3. Configure services
