@@ -1,0 +1,27 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "NovaIDE"
+    }
+  ],
+  "settings": {
+    "git.enabled": true,
+    "git.path": "/usr/bin/git",
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "git.decorations.enabled": true,
+    "git.showActionButton": {
+      "commit": true,
+      "publish": true,
+      "sync": true
+    },
+    "git.branchProtection": ["main"],
+    "git.branchProtectionPrompt": "alwaysPrompt",
+    "git.fetchOnPull": true,
+    "git.showProgress": true,
+    "git.showPushSuccessNotification": true,
+    "git.untrackedChanges": "separate"
+  }
+}

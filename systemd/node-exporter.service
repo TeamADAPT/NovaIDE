@@ -1,0 +1,25 @@
+[Unit]
+Description=Node Exporter
+After=network.target
+
+[Service]
+User=x
+Group=x
+Type=simple
+ExecStart=/usr/local/bin/node_exporter \
+    --collector.filesystem \
+    --collector.cpu \
+    --collector.meminfo \
+    --collector.diskstats \
+    --collector.netdev \
+    --web.listen-address=:9110 \
+    --log.level=info \
+    --log.format=json \
+    --log.output=/logs/monitoring/node-exporter/node-exporter.log
+
+StandardOutput=append:/logs/monitoring/node-exporter/stdout.log
+StandardError=append:/logs/monitoring/node-exporter/stderr.log
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,36 @@
+{
+  "git.enabled": true,
+  "git.path": "/usr/bin/git",
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.decorations.enabled": true,
+  "git.showActionButton": {
+    "commit": true,
+    "publish": true,
+    "sync": true
+  },
+  "git.branchProtection": ["main"],
+  "git.branchProtectionPrompt": "alwaysPrompt",
+  "git.fetchOnPull": true,
+  "git.showProgress": true,
+  "git.showPushSuccessNotification": true,
+  "git.untrackedChanges": "separate",
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "/bin/bash",
+      "icon": "terminal-bash"
+    }
+  },
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  "terminal.integrated.persistentSessionReviveProcess": "never",
+  "terminal.integrated.allowChords": true,
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.enableBell": false,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.gpuAcceleration": "on",
+  "terminal.integrated.rightClickBehavior": "selectWord",
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.shellIntegration.enabled": true
+}

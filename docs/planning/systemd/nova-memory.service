@@ -1,0 +1,36 @@
+[Unit]
+Description=Nova Memory Management Service
+After=network.target nova-monitor.service
+Requires=nova-monitor.service
+
+[Service]
+Type=simple
+User=nova
+Group=nova
+ExecStart=/usr/local/bin/nova-memory
+Restart=always
+RestartSec=5
+Nice=-10
+CPUWeight=95
+IOWeight=95
+MemoryHigh=16G
+MemoryMax=32G
+
+# Direct memory access
+LimitMEMLOCK=infinity
+CapabilityBoundingSet=CAP_IPC_LOCK CAP_SYS_RESOURCE
+AmbientCapabilities=CAP_IPC_LOCK CAP_SYS_RESOURCE
+
+# Memory optimization
+SystemCallFilter=~@clock @debug @cpu-emulation @obsolete
+MemoryDenyWriteExecute=yes
+
+# Security
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=true
+RestrictRealtime=true
+
+[Install]
+WantedBy=multi-user.target

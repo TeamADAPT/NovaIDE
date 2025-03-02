@@ -1,0 +1,39 @@
+[Unit]
+Description=Nova System Monitoring Service
+After=network.target
+Before=nova-context.service nova-memory.service nova-state.service nova-learning.service
+
+[Service]
+Type=simple
+User=nova
+Group=nova
+ExecStart=/usr/local/bin/nova-monitor
+Restart=always
+RestartSec=3
+Nice=-15
+CPUWeight=99
+IOWeight=99
+MemoryHigh=2G
+MemoryMax=4G
+
+# System monitoring capabilities
+CapabilityBoundingSet=CAP_SYS_PTRACE CAP_DAC_READ_SEARCH CAP_SYS_RESOURCE
+AmbientCapabilities=CAP_SYS_PTRACE CAP_DAC_READ_SEARCH CAP_SYS_RESOURCE
+
+# Performance optimization
+CPUSchedulingPolicy=fifo
+CPUSchedulingPriority=99
+IOSchedulingClass=realtime
+IOSchedulingPriority=0
+
+# Security with monitoring access
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target
+Also=nova-context.service nova-memory.service nova-state.service nova-learning.service

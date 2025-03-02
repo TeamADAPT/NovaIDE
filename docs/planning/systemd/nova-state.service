@@ -1,0 +1,43 @@
+[Unit]
+Description=Nova State Management Service
+After=network.target nova-monitor.service nova-memory.service
+Requires=nova-monitor.service nova-memory.service
+
+[Service]
+Type=simple
+User=nova
+Group=nova
+ExecStart=/usr/local/bin/nova-state
+Restart=always
+RestartSec=5
+Nice=-5
+CPUWeight=90
+IOWeight=90
+MemoryHigh=4G
+MemoryMax=8G
+
+# State management capabilities
+CapabilityBoundingSet=CAP_SYS_RESOURCE CAP_IPC_LOCK
+AmbientCapabilities=CAP_SYS_RESOURCE CAP_IPC_LOCK
+
+# Performance optimization
+IOSchedulingClass=best-effort
+IOSchedulingPriority=3
+CPUSchedulingPolicy=batch
+CPUSchedulingPriority=80
+
+# State persistence
+Environment=STATE_DIR=/var/lib/nova/state
+Environment=BACKUP_DIR=/var/lib/nova/state-backup
+
+# Security with state access
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=true
+ReadWritePaths=/var/lib/nova/state /var/lib/nova/state-backup
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

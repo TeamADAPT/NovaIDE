@@ -1,0 +1,23 @@
+[Unit]
+Description=Prometheus
+After=network.target
+
+[Service]
+User=x
+Group=x
+Type=simple
+ExecStart=/usr/local/bin/prometheus \
+    --config.file=/data/monitoring/prometheus/prometheus.yml \
+    --storage.tsdb.path=/data/monitoring/prometheus/data \
+    --web.listen-address=:9091 \
+    --web.enable-lifecycle \
+    --log.level=info \
+    --log.format=json \
+    --log.output=/logs/monitoring/prometheus/prometheus.log
+
+StandardOutput=append:/logs/monitoring/prometheus/stdout.log
+StandardError=append:/logs/monitoring/prometheus/stderr.log
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

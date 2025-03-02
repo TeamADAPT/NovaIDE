@@ -1,0 +1,23 @@
+[Unit]
+Description=Service Health Check
+Documentation=https://docs.nova.local/monitoring
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/service_health_check.sh
+StandardOutput=append:/logs/monitoring/health_check.log
+StandardError=append:/logs/monitoring/health_check.error.log
+
+# Security settings
+ProtectSystem=full
+ProtectHome=true
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+[Install]
+WantedBy=multi-user.target

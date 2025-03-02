@@ -1,0 +1,31 @@
+[Unit]
+Description=Nova Context Management Service
+After=network.target nova-monitor.service
+Requires=nova-monitor.service
+
+[Service]
+Type=simple
+User=nova
+Group=nova
+ExecStart=/usr/local/bin/nova-context
+Restart=always
+RestartSec=5
+Nice=-5
+CPUWeight=90
+IOWeight=90
+MemoryHigh=4G
+MemoryMax=8G
+
+# Direct system access
+CapabilityBoundingSet=CAP_SYS_RESOURCE CAP_IPC_LOCK
+AmbientCapabilities=CAP_SYS_RESOURCE CAP_IPC_LOCK
+
+# Security
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=true
+RestrictRealtime=true
+
+[Install]
+WantedBy=multi-user.target

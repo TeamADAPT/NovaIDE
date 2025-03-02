@@ -1,0 +1,26 @@
+{
+  "name": "novaide",
+  "version": "0.1.0",
+  "description": "NovaIDE - Advanced AI-powered development environment",
+  "private": true,
+  "scripts": {
+    "start": "echo \"No start script specified\" && exit 1",
+    "test": "echo \"No test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamADAPT/novaide.git"
+  },
+  "keywords": [
+    "ide",
+    "vscode",
+    "ai",
+    "development"
+  ],
+  "author": "TeamADAPT",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/TeamADAPT/novaide/issues"
+  },
+  "homepage": "https://github.com/TeamADAPT/novaide#readme"
+}
