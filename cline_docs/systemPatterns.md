@@ -1,160 +1,75 @@
-# NovaIDE System Patterns
-Version: 1.0.0
-Date: 2025-03-02 08:39 MST
-Author: Forge
+# System Patterns
 
 ## Architecture Patterns
 
-### 1. Core Architecture
-- Microservices-based design
-- Event-driven communication
-- CQRS pattern for state management
-- Hexagonal architecture for core services
+### VSCode Instance Isolation
+- Separate user data directories
+  * Vaeris: /home/x/.config/Code-Isolated/vaeris
+  * Theseus: /home/x/.config/Code-Isolated/theseus
 
-### 2. Integration Patterns
-- Adapter pattern for VSCodium integration
-- Observer pattern for event handling
-- Strategy pattern for Nova behaviors
-- Factory pattern for service creation
+- Isolated extension directories
+  * Vaeris: /home/x/.vscode-isolated/vaeris/extensions
+  * Theseus: /home/x/.vscode-isolated/theseus/extensions
 
-### 3. Communication Patterns
-- Pub/Sub for event distribution
-- CRDT for collaborative editing
-- Message queues for async operations
-- Streaming for large data handling
+### Team Workspace Organization
+- Team-specific directories
+  * NovaOps: /data-nova/ax/NovaOps
+  * DataOps: /data-nova/ax/DataOps
 
-### 4. Data Patterns
-- Repository pattern for data access
-- Vector storage for embeddings
-- Cache-aside for performance
-- Event sourcing for history
+### Resource Management
+- Memory limits: 3072MB per instance
+- Extension loading controls
+- Crash recovery mechanisms
 
 ## Technical Decisions
 
-### 1. Base Platform
-- VSCodium fork as foundation
-- TypeScript for core development
-- Rust for performance-critical components
-- Python for AI/ML integration
+### Extension Management
+1. Copy approach vs. symlink
+   - Decision: Direct copy of extensions
+   - Rationale: Better isolation, prevents shared state issues
+   - Impact: Higher disk usage, but cleaner separation
 
-### 2. Storage Solutions
-- Redis for caching/coordination
-- Vector databases for embeddings
-- PostgreSQL for structured data
-- S3-compatible for artifacts
+2. Memory Configuration
+   - Setting: --max-memory=3072
+   - Purpose: Prevent memory exhaustion
+   - Status: Under evaluation due to crashes
 
-### 3. Communication Infrastructure
-- Kafka for event streaming
-- gRPC for service communication
-- WebSocket for real-time updates
-- REST for external APIs
-
-### 4. Development Tools
-- Docker for containerization
-- Kubernetes for orchestration
-- GitHub Actions for CI/CD
-- Prometheus/Grafana for monitoring
+3. Display Configuration
+   - DISPLAY=:20
+   - XAUTHORITY=/home/x/.Xauthority
+   - Purpose: Consistent X11 access
 
 ## Integration Points
 
-### 1. VSCodium Core
-- Extension API
-- Command system
-- File system access
-- Window management
+### Extension Integration
+- Roo Extension (v3.7.11)
+  * Source: /home/x/.vscode/extensions/
+  * Target: Isolated extension directories
+  * Status: Experiencing stability issues
 
-### 2. Nova Framework
-- Agent coordination
-- Memory management
-- Task distribution
-- Context sharing
-
-### 3. System Services
-- Process management
-- Resource allocation
-- Security controls
-- Health monitoring
-
-### 4. Development Tools
-- Source control
-- Build system
-- Testing framework
-- Deployment pipeline
+### System Services
+- X11 Display Server
+- VSCode/VSCodium base installation
+- Team workspace mounts
 
 ## Evolution Paths
 
-### 1. Core Platform
-- Enhanced VSCodium integration
-- Improved performance
-- Extended capabilities
-- Security hardening
+### Current State
+- Basic workspace isolation
+- Extension copying mechanism
+- Resource limits implemented
 
-### 2. Nova Integration
-- Advanced coordination
-- Enhanced memory systems
-- Improved learning
-- Better collaboration
+### Next Evolution
+1. Stable extension integration
+2. Automated crash recovery
+3. Enhanced monitoring
+4. Resource optimization
 
-### 3. Development Tools
-- Extended automation
-- Better testing
-- Enhanced monitoring
-- Improved deployment
+### Future Considerations
+1. Dynamic resource allocation
+2. Extension preloading
+3. Workspace templates
+4. Team-specific configurations
 
-### 4. Community Features
-- Plugin system
-- Marketplace
-- Documentation
-- Community tools
-
-## Security Patterns
-
-### 1. Access Control
-- Role-based access
-- Capability-based security
-- Resource isolation
-- Audit logging
-
-### 2. Data Protection
-- Encryption at rest
-- Secure communication
-- Data sanitization
-- Backup/recovery
-
-### 3. System Security
-- Process isolation
-- Resource limits
-- Vulnerability scanning
-- Security updates
-
-### 4. Compliance
-- Audit trails
-- Policy enforcement
-- Data governance
-- Privacy controls
-
-## Performance Patterns
-
-### 1. Resource Management
-- Dynamic allocation
-- Load balancing
-- Caching strategies
-- Resource pooling
-
-### 2. Optimization
-- Code optimization
-- Memory management
-- I/O optimization
-- Network efficiency
-
-### 3. Scaling
-- Horizontal scaling
-- Vertical scaling
-- Load distribution
-- Resource elasticity
-
-### 4. Monitoring
-- Performance metrics
-- Resource tracking
-- Health checks
-- Alert system
+Last Updated: 2025-03-02 12:44 MST
+Author: Forge

@@ -1,36 +1,45 @@
 # Operations History
-Version: 1.0.0
 
-## 2025-03-02 08:45 MST
-Author: Forge
+## 2025-03-02 12:43 MST - VSCode Team Instance Setup and Crash Investigation
+**Author**: Forge
+**Status**: In Progress
+**Priority**: High
 
-### Repository Configuration
-1. Initialized git repository
-2. Set up remote with TeamADAPT organization
-3. Fixed repository case sensitivity (NovaIDE -> novaide)
-4. Verified git configuration and branch tracking
+### Actions Taken
+1. Created isolated VSCode instances for team directories:
+   - Vaeris: /data-nova/ax/NovaOps
+   - Theseus: /data-nova/ax/DataOps
+2. Set up isolated extension directories:
+   - /home/x/.vscode-isolated/vaeris/extensions
+   - /home/x/.vscode-isolated/theseus/extensions
+3. Copied Roo extension to isolated instances
+4. Launched VSCode with team-specific configurations
 
-### Status
-- Repository: Configured and synced with origin
-- Branch: main (tracking origin/main)
-- Remote: https://github.com/TeamADAPT/novaide.git
-- Commit: Initial commit with project structure
+### Issues Encountered
+- VSCode instances crashed when attempting to add Roo extension
+- Possible memory or extension loading issues
+- Need to investigate crash logs and extension initialization
 
 ### Next Steps
-1. Set up development environment
-2. Configure VSCodium integration
-3. Implement core services
-4. Establish monitoring infrastructure
+1. Review VSCode crash logs
+2. Consider implementing extension preload mechanism
+3. Evaluate memory allocation settings
+4. Add enhanced crash monitoring
 
 ### Technical Details
-- Git Configuration:
-  * User: ADAPT-Chase
-  * Email: chase@levelup2x.com
-  * Default Branch: main
-  * Remote URL: https://github.com/TeamADAPT/novaide.git
+- Extension Path: rooveterinaryinc.roo-cline-3.7.11
+- Launch Parameters:
+  ```bash
+  DISPLAY=:20 
+  XAUTHORITY=/home/x/.Xauthority 
+  --user-data-dir=/home/x/.config/Code-Isolated/{instance}
+  --extensions-dir=/home/x/.vscode-isolated/{instance}/extensions
+  --max-memory=3072
+  ```
 
-### Notes
-- Repository moved from personal to organization account
-- Case sensitivity handled for consistent naming
-- All files tracked and committed
-- Branch tracking properly configured
+### Dependencies
+- VSCode/VSCodium
+- Roo Extension v3.7.11
+- X11 Display Server
+
+---

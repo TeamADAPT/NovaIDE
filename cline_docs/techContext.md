@@ -1,163 +1,102 @@
-# NovaIDE Technical Context
-Version: 1.0.0
-Date: 2025-03-02 08:41 MST
-Author: Forge
+# Technical Context
 
 ## Technology Stack
 
-### 1. Core Platform
-- VSCodium (Base IDE)
-- TypeScript/JavaScript (Core)
-- Rust (Performance-critical)
-- Python (AI/ML Components)
+### Core Components
+- VSCode/VSCodium Base Installation
+- X11 Display Server
+- Roo Extension v3.7.11
+- Systemd Services
 
-### 2. AI/ML Stack
-- LangGraph (Flow Control)
-- AutoGen (Agent Framework)
-- Weaviate/Chroma (Vector DB)
-- CrewAI/SWARM (Coordination)
+### Development Environment
+- Linux 6.1
+- Bash Shell
+- Node.js (for VSCode extensions)
+- X11 Display Configuration
 
-### 3. Infrastructure
-- Docker (Containerization)
-- Kubernetes (Orchestration)
-- Redis/Kafka (Coordination)
-- Prometheus/Grafana (Monitoring)
-
-### 4. Development Tools
-- Git (Version Control)
-- GitHub Actions (CI/CD)
-- Jest/PyTest (Testing)
-- ESLint/Prettier (Code Quality)
+### Team Workspaces
+- NovaOps: /data-nova/ax/NovaOps
+- DataOps: /data-nova/ax/DataOps
 
 ## Development Setup
 
-### 1. Environment Requirements
-- Node.js 20+
-- Python 3.11+
-- Rust 1.75+
-- Docker Desktop
-- Kubernetes (local)
-- Redis Server
-- PostgreSQL
+### VSCode Instance Configuration
+```bash
+# Base Configuration
+DISPLAY=:20
+XAUTHORITY=/home/x/.Xauthority
 
-### 2. IDE Configuration
-- VSCodium Extensions
-- Debug Configurations
-- Task Definitions
-- Settings Sync
+# Instance-specific paths
+USER_DATA_DIR=/home/x/.config/Code-Isolated/{instance}
+EXTENSIONS_DIR=/home/x/.vscode-isolated/{instance}/extensions
 
-### 3. Development Tools
-- pnpm (Package Management)
-- cargo (Rust Build)
-- poetry (Python Dependencies)
-- kubectl (K8s Management)
+# Resource limits
+MAX_MEMORY=3072
+```
 
-### 4. Local Services
-- Redis Instance
-- Vector Database
-- Message Queue
-- Monitoring Stack
+### Directory Structure
+```
+/home/x/
+├── .config/
+│   └── Code-Isolated/
+│       ├── vaeris/
+│       └── theseus/
+└── .vscode-isolated/
+    ├── vaeris/
+    │   └── extensions/
+    └── theseus/
+        └── extensions/
+```
 
 ## Technical Constraints
 
-### 1. Performance Requirements
-- Startup Time: < 2s
-- Memory Usage: < 500MB
-- CPU Usage: < 30%
-- Response Time: < 100ms
+### Resource Limitations
+- Memory: 3072MB per instance
+- Display: Single X11 server
+- Extension isolation requirements
 
-### 2. Security Constraints
-- Sandboxed Execution
-- Resource Isolation
-- Access Control
-- Data Protection
+### Known Issues
+1. VSCode crashes during Roo extension activation
+2. Memory management under investigation
+3. Extension loading stability
 
-### 3. Compatibility
-- VSCodium 1.85+
-- Node.js 20+ LTS
-- Modern Browsers
-- Linux/macOS/Windows
+### Integration Requirements
+1. Extension compatibility
+2. Workspace isolation
+3. Resource sharing controls
+4. Crash recovery mechanisms
 
-### 4. Resource Limits
-- Memory: 4GB Max
-- Storage: 1GB Max
-- Network: Rate Limited
-- CPU: 4 Cores Max
+## Development Constraints
 
-## Integration Requirements
+### Extension Management
+- Direct copy approach required
+- No shared extension state
+- Version compatibility checks needed
 
-### 1. VSCodium Integration
-- Extension API
-- Command System
-- File System Access
-- Window Management
+### Process Isolation
+- Separate user data directories
+- Independent extension spaces
+- Resource limit enforcement
 
-### 2. System Integration
-- Process Management
-- File Operations
-- Network Access
-- Resource Control
+### Monitoring Requirements
+1. Process health tracking
+2. Memory usage monitoring
+3. Crash detection
+4. Extension state verification
 
-### 3. AI Integration
-- Model Loading
-- Inference Pipeline
-- Memory Management
-- Context Handling
+## Future Considerations
 
-### 4. Service Integration
-- Authentication
-- API Gateway
-- Service Discovery
-- Load Balancing
+### Technical Improvements
+1. Extension preloading system
+2. Dynamic resource allocation
+3. Enhanced crash recovery
+4. Automated workspace setup
 
-## Development Standards
+### Integration Enhancements
+1. Team-specific configurations
+2. Workspace templates
+3. Resource optimization
+4. Monitoring dashboards
 
-### 1. Code Quality
-- TypeScript Strict Mode
-- 100% Test Coverage
-- Documentation Required
-- Code Review Process
-
-### 2. Architecture
-- Microservices Design
-- Event-Driven
-- CQRS Pattern
-- Hexagonal Architecture
-
-### 3. Security
-- OWASP Guidelines
-- Dependency Scanning
-- Security Reviews
-- Access Control
-
-### 4. Documentation
-- API Documentation
-- Architecture Docs
-- User Guides
-- Development Guides
-
-## Monitoring Requirements
-
-### 1. System Metrics
-- Resource Usage
-- Performance Stats
-- Error Rates
-- Response Times
-
-### 2. Application Metrics
-- User Actions
-- System Events
-- AI Operations
-- Service Health
-
-### 3. Security Monitoring
-- Access Logs
-- Audit Trail
-- Security Events
-- Compliance Checks
-
-### 4. Development Metrics
-- Build Status
-- Test Coverage
-- Code Quality
-- Deployment Status
+Last Updated: 2025-03-02 12:45 MST
+Author: Forge
