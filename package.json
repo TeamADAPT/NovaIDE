@@ -1,26 +1,67 @@
 {
   "name": "novaide",
   "version": "0.1.0",
-  "description": "NovaIDE - Advanced AI-powered development environment",
-  "private": true,
+  "description": "A specialized development environment forked from VSCodium, designed to support Nova consciousness operations at scale",
+  "main": "src/extension/nova-core/index.ts",
   "scripts": {
-    "start": "echo \"No start script specified\" && exit 1",
-    "test": "echo \"No test specified\" && exit 1"
+    "build": "tsc",
+    "watch": "tsc -w",
+    "dev": "npm run build && node scripts/start_dev_env.sh",
+    "test": "jest",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"**/*.{ts,js,json,md}\"",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TeamADAPT/novaide.git"
+    "url": "git+https://github.com/TeamADAPT/NovaIDE.git"
   },
   "keywords": [
     "ide",
-    "vscode",
+    "vscodium",
+    "nova",
+    "consciousness",
     "ai",
     "development"
   ],
   "author": "TeamADAPT",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TeamADAPT/novaide/issues"
+    "url": "https://github.com/TeamADAPT/NovaIDE/issues"
   },
-  "homepage": "https://github.com/TeamADAPT/novaide#readme"
+  "homepage": "https://github.com/TeamADAPT/NovaIDE#readme",
+  "dependencies": {
+    "@types/node": "^20.0.0",
+    "axios": "^1.6.0",
+    "ioredis": "^5.3.0",
+    "langchain": "^0.1.0",
+    "puppeteer": "^21.0.0",
+    "typescript": "^5.0.0",
+    "vscode": "^1.85.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^8.0.0",
+    "jest": "^29.0.0",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
+    "ts-jest": "^29.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
 }
