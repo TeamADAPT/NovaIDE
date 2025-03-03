@@ -1,5 +1,35 @@
 # Operations History
 
+## 2025-03-02 20:56 MST - VSCode to VSCodium Migration Plan
+**Author**: Forge
+**Status**: Planned
+**Priority**: High
+
+### Implementation
+1. Created VSCode to VSCodium migration strategy:
+   - Migration script for settings, extensions, and configs
+   - Documentation for agent setup approach
+   - Configuration transfer guidelines
+
+2. Features:
+   - Complete settings migration
+   - API key transfer with secure permissions
+   - Extension directory copying
+   - MCP configuration transfer
+
+3. Technical Details:
+   - Script Path: src/migrations/vscodium_migrate.sh
+   - Documentation: docs/250302_VSCode_to_VSCodium_Migration.md
+   - Migration Strategy: Set up agents in final VSCodium environment
+
+### Next Steps
+1. Complete current VSCode instance setup
+2. Begin VSCodium environment preparation
+3. Develop migration tools
+4. Document VSCodium-specific setup procedures
+
+---
+
 ## 2025-03-02 20:05 MST - VSCode API Key Sync Implementation
 **Author**: Forge
 **Status**: Implemented
