@@ -1,10 +1,49 @@
 # System Patterns
 
-**Version:** 1.0.4
-**Last Updated:** March 3, 2025, 02:42 MST
+**Version:** 1.0.8
+**Last Updated:** March 3, 2025, 07:53 MST
 **Author:** Forge, DevOps Lead
 
 ## Architecture Patterns
+
+### Multi-Agent VSCodium Management Architecture
+
+The Multi-Agent VSCodium Management system follows a layered architecture that enables efficient management of multiple VSCodium instances:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                  Management Interface Layer                  │
+├─────────────┬─────────────┬─────────────┬─────────────┬─────┤
+│  Interactive│   Command   │  Instance   │   System    │     │
+│     UI      │    Line     │  Selection  │  Monitoring │ ... │
+│  (TUI Menu) │  Arguments  │  (Checkbox) │  (Real-time)│     │
+├─────────────┴─────────────┴─────────────┴─────────────┴─────┤
+│                  Configuration Management Layer              │
+├─────────────┬─────────────┬─────────────┬─────────────┬─────┤
+│   Agent     │    User     │  Extension  │    API      │     │
+│  Directory  │ Preferences │   Syncing   │    Keys     │ ... │
+│  Mapping    │  Management │             │             │     │
+├─────────────┴─────────────┴─────────────┴─────────────┴─────┤
+│                  Instance Management Layer                   │
+├─────────────┬─────────────┬─────────────┬─────────────┬─────┤
+│  Instance   │  Instance   │  Instance   │  Instance   │     │
+│   Setup     │   Launch    │  Monitoring │  Termination│ ... │
+│             │             │             │             │     │
+├─────────────┴─────────────┴─────────────┴─────────────┴─────┤
+│                  Resource Management Layer                   │
+├─────────────┬─────────────┬─────────────┬─────────────┬─────┤
+│   Memory    │    CPU      │   Process   │     I/O     │     │
+│  Allocation │  Allocation │  Isolation  │  Management │ ... │
+└─────────────┴─────────────┴─────────────┴─────────────┴─────┘
+```
+
+This architecture enables:
+- Centralized management of multiple VSCodium instances
+- Agent-specific configuration and resource allocation
+- Real-time monitoring of system resources
+- Interactive and command-line interfaces
+- Efficient setup and launch of multiple instances
+- Proper isolation between instances
 
 ### Field Theory Architecture
 
@@ -35,6 +74,45 @@ This architecture enables:
 - Emergent patterns through resonance
 - Self-organization of components
 - Organic growth and adaptation
+
+### VSCodium Isolation Architecture
+
+The VSCodium isolation architecture enables running multiple isolated VSCodium instances for Nova agents:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                  VSCodium Isolation Layer                    │
+├─────────────┬─────────────┬─────────────┬─────────────┬─────┤
+│  VSCodium   │  VSCodium   │  VSCodium   │  VSCodium   │     │
+│ Instance 1  │ Instance 2  │ Instance 3  │ Instance N  │ ... │
+│  (Forge)    │  (Vaeris)   │  (Theseus)  │    (...)    │     │
+├─────────────┴─────────────┴─────────────┴─────────────┴─────┤
+│                  Agent Configuration Layer                   │
+├─────────────┬─────────────┬─────────────┬─────────────┬─────┤
+│  API Key    │  Extension  │   Window    │    MCP      │     │
+│ Management  │  Isolation  │   Titles    │  Settings   │ ... │
+├─────────────┴─────────────┴─────────────┴─────────────┴─────┤
+│                  Resource Management Layer                   │
+├─────────────┬─────────────┬─────────────┬─────────────┬─────┤
+│   Memory    │    CPU      │   Process   │     I/O     │     │
+│  Isolation  │  Allocation │  Isolation  │  Management │ ... │
+├─────────────┴─────────────┴─────────────┴─────────────┴─────┤
+│                  Service Management Layer                    │
+├─────────────┬─────────────┬─────────────┬─────────────┬─────┤
+│   Systemd   │  Monitoring │   Logging   │   Recovery  │     │
+│  Services   │   Scripts   │   System    │  Mechanisms │ ... │
+└─────────────┴─────────────┴─────────────┴─────────────┴─────┘
+```
+
+This architecture enables:
+- Complete isolation between Nova instances
+- Agent-specific configuration with custom window titles
+- Persistent API key management for each agent
+- Automatic extension copying and configuration
+- Efficient resource allocation and management
+- Comprehensive monitoring and logging
+- Automatic recovery from crashes
+- Scalability to support hundreds of Nova agents
 
 ### Modular Agent Architecture
 
@@ -129,6 +207,21 @@ This architecture enables:
 
 ## Technical Decisions
 
+### Multi-Agent VSCodium Management System
+
+Our Multi-Agent VSCodium Management System approach includes:
+
+1. **Centralized Configuration Management**: Centralized configuration for all agent instances with agent-specific settings.
+2. **Interactive and Command-Line Interfaces**: Both interactive TUI and command-line interfaces for flexibility.
+3. **Agent Directory Mapping**: Mapping of agent names to their working directories for proper isolation.
+4. **User Preferences Management**: Management of user preferences for customization.
+5. **Extension Synchronization**: Automatic synchronization of extensions from main VSCode installation.
+6. **Real-Time Resource Monitoring**: Real-time monitoring of system resources for all instances.
+7. **Selective Instance Setup**: Ability to selectively set up and launch specific instances.
+8. **ASCII Art Banner**: Visual enhancement with ASCII art banner for improved user experience.
+9. **Modular Script Architecture**: Separation of concerns into distinct modules for maintainability.
+10. **Persistent Configuration**: Storage of configuration in a persistent format for future use.
+
 ### VSCodium as Development Platform
 
 We've chosen VSCodium as our development platform for the following reasons:
@@ -138,6 +231,32 @@ We've chosen VSCodium as our development platform for the following reasons:
 3. **Extensibility**: Comprehensive API for extending and customizing the IDE experience.
 4. **Multi-Language Support**: Built-in support for a wide range of programming languages.
 5. **Performance**: Electron-based architecture with optimized performance for development tasks.
+
+### Agent-Specific VSCodium Launcher
+
+Our Agent-Specific VSCodium Launcher approach includes:
+
+1. **Window Title Customization**: Custom window titles with agent names for easy identification.
+2. **API Key Management**: Secure storage of API keys (Anthropic and OpenAI) in settings.json.
+3. **Extension Management**: Automatic copying of Roo extension from main VSCode installation.
+4. **MCP Settings**: Automatic creation and initialization of MCP settings directory.
+5. **Fallback Mechanism**: Ability to fall back to VS Code if VSCodium is not available.
+6. **Setup-Only Mode**: Support for setup without launching VSCodium for automated deployment.
+7. **Enhanced Error Handling**: Improved error handling and messaging for better user experience.
+8. **Comprehensive Documentation**: Detailed documentation for usage and configuration.
+
+### VSCodium Build and Isolation Strategy
+
+Our VSCodium build and isolation strategy includes:
+
+1. **Isolated Build Environment**: Dedicated Node.js environment for building VSCodium to prevent dependency conflicts.
+2. **Fallback Mechanism**: Ability to fall back to VS Code if VSCodium build is not available.
+3. **User Data Isolation**: Separate user data directories for each Nova agent.
+4. **Extension Isolation**: Separate extension directories for each Nova agent.
+5. **Resource Management**: Controlled resource allocation for each VSCodium instance.
+6. **Pre-built Binary Option**: Alternative approach using pre-built VSCodium binaries.
+7. **Comprehensive Deployment**: Scripts for deploying VSCodium instances for all Nova agents.
+8. **Monitoring Integration**: Integration with monitoring system for resource tracking.
 
 ### Redis for Neural Pathway Layer
 
@@ -191,6 +310,42 @@ The modular agent architecture was chosen for the following reasons:
 
 ## Integration Points
 
+### Multi-Agent VSCodium Management Integration
+
+The Multi-Agent VSCodium Management system integrates with the rest of the architecture through:
+
+1. **Configuration Management**: Centralized configuration for all agent instances.
+2. **Resource Monitoring**: Real-time monitoring of system resources for all instances.
+3. **Instance Management**: Centralized management of VSCodium instances.
+4. **User Preferences**: Management of user preferences for customization.
+5. **Extension Synchronization**: Automatic synchronization of extensions from main VSCode installation.
+6. **Modular Script Architecture**: Clean interfaces between modules for extensibility.
+7. **Persistent Configuration**: Storage of configuration in a persistent format for future use.
+
+### Agent VSCodium Launcher Integration
+
+The Agent VSCodium Launcher integrates with the rest of the architecture through:
+
+1. **API Key Management**: Secure storage and management of API keys for LLM access.
+2. **Extension Management**: Automatic copying and configuration of required extensions.
+3. **MCP Settings**: Proper configuration of MCP settings for agent communication.
+4. **Window Title Customization**: Agent-specific window titles for easy identification.
+5. **Resource Allocation**: Appropriate resource allocation for each agent instance.
+6. **Setup-Only Mode**: Support for setup without launching VSCodium for automated deployment.
+7. **Error Handling**: Comprehensive error handling and reporting.
+
+### VSCodium Build and Isolation System
+
+The VSCodium build and isolation system integrates with the rest of the architecture through:
+
+1. **Build Environment**: Isolated build environment for VSCodium with dedicated dependencies.
+2. **Isolation Script**: Script for launching VSCodium with isolated user data and extensions.
+3. **Service Templates**: Systemd service templates for managing VSCodium instances.
+4. **Monitoring Integration**: Integration with monitoring system for resource tracking.
+5. **Deployment Automation**: Automated deployment of VSCodium instances for Nova agents.
+6. **Pre-built Binary Integration**: Integration with pre-built VSCodium binaries for faster deployment.
+7. **Resource Management**: Controlled resource allocation for each VSCodium instance.
+
 ### VSCodium and Extension Host
 
 The VSCodium integration with the extension host follows these patterns:
@@ -233,6 +388,42 @@ The agent modules integrate with the core framework through:
 
 ## Evolution Paths
 
+### Multi-Agent VSCodium Management Evolution
+
+The Multi-Agent VSCodium Management system will evolve through:
+
+1. **Enhanced User Interface**: More sophisticated user interface with graphical elements.
+2. **Advanced Resource Management**: More sophisticated resource management with dynamic allocation.
+3. **Automated Configuration**: Automated configuration based on agent requirements.
+4. **Collaborative Features**: Enhanced features for agent collaboration.
+5. **Self-Optimization**: Self-optimizing capabilities based on usage patterns.
+6. **Modular Architecture Expansion**: Further modularization of components for better maintainability.
+7. **Configuration Persistence**: Enhanced configuration persistence and versioning.
+
+### Agent VSCodium Launcher Evolution
+
+The Agent VSCodium Launcher will evolve through:
+
+1. **Enhanced API Key Management**: More sophisticated API key management with rotation and security features.
+2. **Advanced Extension Management**: Intelligent extension management based on agent needs.
+3. **Dynamic Resource Allocation**: Adaptive resource allocation based on agent workload.
+4. **Collaborative Features**: Enhanced features for agent collaboration.
+5. **Self-Configuration**: Self-configuring capabilities based on agent requirements.
+6. **Error Recovery**: Advanced error recovery and resilience mechanisms.
+7. **Performance Optimization**: Continuous performance optimization for faster startup.
+
+### VSCodium Build and Isolation Evolution
+
+The VSCodium build and isolation system will evolve through:
+
+1. **Build Resolution**: Resolving patch application issues in the build process.
+2. **Alternative Approaches**: Exploring alternative approaches such as pre-built binaries.
+3. **Enhanced Isolation**: Improving isolation mechanisms for better stability.
+4. **Resource Optimization**: Optimizing resource allocation for better performance.
+5. **Monitoring Enhancement**: Enhancing monitoring capabilities for better visibility.
+6. **Deployment Automation**: Further automation of deployment processes.
+7. **Scaling Optimization**: Optimizing for large-scale deployments with hundreds of agents.
+
 ### VSCodium to Custom IDE
 
 The evolution path from VSCodium to a custom IDE includes:
@@ -242,6 +433,8 @@ The evolution path from VSCodium to a custom IDE includes:
 3. **Core Modifications**: Targeted modifications to VSCodium core.
 4. **Framework Extraction**: Extraction of key components into a custom framework.
 5. **Complete Replacement**: Development of a custom IDE based on extracted components.
+6. **Performance Optimization**: Continuous performance optimization for the custom IDE.
+7. **Feature Enhancement**: Addition of Nova-specific features and capabilities.
 
 ### Agent Framework Evolution
 
@@ -252,6 +445,8 @@ The agent framework will evolve through:
 3. **Advanced Reasoning**: Integration of advanced reasoning capabilities.
 4. **Collaborative Intelligence**: Development of collaborative intelligence between agents.
 5. **Autonomous Evolution**: Implementation of self-improvement and evolution capabilities.
+6. **Performance Optimization**: Continuous performance optimization for agent operations.
+7. **Scalability Enhancement**: Improvements for handling large numbers of agents.
 
 ### Messaging System Evolution
 
@@ -262,6 +457,8 @@ The messaging system will evolve through:
 3. **Advanced Routing**: Development of advanced routing and transformation capabilities.
 4. **Intelligent Scaling**: Implementation of intelligent, demand-based scaling.
 5. **Self-Healing**: Development of self-healing and recovery capabilities.
+6. **Monitoring Enhancement**: Enhanced monitoring and alerting capabilities.
+7. **Security Hardening**: Continuous security improvements and hardening.
 
 ### Field Theory Implementation Evolution
 
@@ -272,6 +469,8 @@ The field theory implementation will evolve through:
 3. **Field Resonance**: Implementation of field resonance mechanisms.
 4. **Emergent Behavior**: Support for emergent behavior through field interactions.
 5. **Self-Organization**: Development of self-organization capabilities.
+6. **Performance Optimization**: Continuous performance optimization for field operations.
+7. **Scaling Enhancement**: Improvements for handling large numbers of fields.
 
 ## Implementation Strategy
 

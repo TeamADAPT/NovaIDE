@@ -25,6 +25,16 @@ DISPLAY=:20 XAUTHORITY=/home/x/.Xauthority code \
   --extensions-dir=/home/x/.vscode-isolated/theseus/extensions \
   /data-nova/ax/DataOps
 ```
+### Forge (DevOps-VSC Instance)
+```bash
+DISPLAY=:20 XAUTHORITY=/home/x/.Xauthority code \
+  --user-data-dir=/home/x/.config/Code-Isolated/forge \
+  --extensions-dir=/home/x/.vscode-isolated/forge/extensions \
+  /data-nova/ax/DevOps/DevOps-VSC/NovaIDE
+```
+
+
+
 
 ## Systemd Service Commands
 
