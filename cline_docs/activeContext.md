@@ -1,5 +1,5 @@
 # MyCoderAI Active Context
-**Version:** 0.1.0
+**Version:** 0.1.1
 **Date:** 2025-03-03
 **Author:** Forge, DevOps Lead
 
@@ -42,16 +42,17 @@ The MyCoderAI project is currently in Minimum Viable Product (MVP) development p
 
 ## Recent Changes
 
-1. Core project architecture defined and documented
-2. Directory structure created with component separation
-3. Package.json with dependencies defined
-4. Core implementation of all main components:
+1. Refactored TesterAgent to modular architecture for improved maintainability
+2. Core project architecture defined and documented
+3. Directory structure created with component separation
+4. Package.json with dependencies defined
+5. Core implementation of all main components:
    - Agent Orchestrator (agent/orchestrator.js)
    - Memory Manager (memory/memoryManager.js)
    - Communication Hub (communication/hub.js)
    - Execution Environment (execution/environment.js)
    - UI Server (ui/server.js)
-5. Project documentation created:
+6. Project documentation created:
    - Architecture documentation
    - Overview documentation
    - Memory bank files
