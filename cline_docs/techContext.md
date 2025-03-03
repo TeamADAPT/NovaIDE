@@ -1,245 +1,369 @@
-# MyCoderAI Technology Context
-**Version:** 0.1.0
-**Date:** 2025-03-03
+# Technical Context
+
+**Version:** 1.0.4
+**Last Updated:** March 3, 2025, 02:43 MST
 **Author:** Forge, DevOps Lead
 
 ## Technology Stack
 
-### Backend Technologies
-- **Runtime Environment:** Node.js v18+
-- **Server Framework:** Express.js 4.18+
-- **Real-time Communication:** Socket.IO 4.5+
-- **Process Management:** PM2 5.2+
-- **Database:**
-  - SQLite 3.36+ (default storage)
-  - Redis 6.2+ (optional for distributed setups)
-- **Execution Environment:**
-  - Docker 24.0+ (when available)
-  - Child Process API (fallback)
+### Development Environment
 
-### Frontend Technologies
-- **Framework:** React 18.2+
-- **UI Library:** Bootstrap 5.1+
-- **State Management:** React Context API
-- **Data Fetching:** Axios 1.3+
-- **WebSocket Client:** Socket.IO Client 4.5+
-- **Visualization:** Chart.js 4.0+
+- **IDE**: VSCodium (fork of VS Code)
+- **Version Control**: Git
+- **CI/CD**: GitHub Actions
+- **Container Runtime**: None (direct system integration)
+- **Process Management**: systemd
+- **Resource Monitoring**: Prometheus + Grafana
 
-### Development Tools
-- **Package Management:** npm 8.0+
-- **Build Tools:**
-  - Webpack 5.75+
-  - Babel 7.20+
-- **Testing Framework:**
-  - Jest 29.0+
-  - Supertest 6.0+
-  - React Testing Library 13.0+
-- **Code Quality:**
-  - ESLint 8.30+
-  - Prettier 2.8+
+### Programming Languages
 
-### Containerization & Deployment
-- **Containerization:** Docker 24.0+
-- **Orchestration:** Docker Compose 2.15+ (development)
-- **CI/CD Pipeline:** GitHub Actions
+- **Primary**: JavaScript/TypeScript (Node.js)
+- **Secondary**: Python, Rust
+- **Scripting**: Bash
+- **Configuration**: JSON, YAML
+
+### Frameworks and Libraries
+
+- **Backend**: Node.js, Express
+- **Frontend**: React, Socket.IO
+- **Testing**: Jest, Mocha, Chai
+- **Documentation**: JSDoc, TypeDoc
+- **Utilities**: Lodash, date-fns
+
+### Memory Systems
+
+- **Primary Cache**: Redis
+- **Document Store**: MongoDB
+- **Search Engine**: Elasticsearch
+- **Vector Store**: Pinecone
+
+### Messaging Systems
+
+- **Event Streaming**: Kafka
+  - High-throughput event processing
+  - Stream processing with Kafka Streams
+  - Durable message storage and replay
+  - Analytics and audit logging
+
+- **Service Mesh**: NATS
+  - Service discovery and health checks
+  - Real-time agent coordination
+  - Low-latency operations
+  - Lightweight service-to-service communication
+
+- **Multi-Tenant Distribution**: Pulsar
+  - Cross-datacenter message distribution
+  - Long-term event storage
+  - Multi-tenant message isolation
+  - Geo-replication capabilities
+
+### Agent Frameworks
+
+- **Core Framework**: Custom agent framework
+- **LLM Integration**: LangChain, LlamaIndex
+- **Orchestration**: LangGraph
+- **Multi-Agent**: AutoGen, CrewAI
+
+### Modular Architecture
+
+- **Agent Base Layer**: Common agent functionality
+- **Specialized Agents**: Architect, Coder, Tester, Reviewer
+- **Language Modules**: JavaScript, TypeScript, Python
+- **Code Manipulation**: Optimization, Refactoring, Debugging, Review
 
 ## Development Setup
 
-### Local Development Environment
-1. **Prerequisites:**
-   - Node.js v18+ installed
-   - npm 8.0+ installed
-   - Docker (optional, for enhanced execution isolation)
-   - Git for version control
+### Environment Requirements
 
-2. **Installation Steps:**
-   ```bash
-   # Clone repository
-   git clone https://github.com/organization/mycoderai.git
-   cd mycoderai
-   
-   # Install dependencies
-   npm install
-   
-   # Setup environment
-   cp .env.example .env
-   # Edit .env with required API keys and configuration
-   
-   # Start development server
-   npm run dev
-   ```
+- **OS**: Linux (Ubuntu 22.04 LTS)
+- **CPU**: 16+ cores
+- **RAM**: 64+ GB
+- **Storage**: 500+ GB SSD
+- **Network**: 10+ Gbps
 
-3. **Development Server:**
-   - Express server runs on port 3000
-   - Socket.IO attaches to Express server
-   - Frontend development server on port 3001
-   - API endpoints at /api/*
-   - Socket.IO path at /socket.io
+### Required Software
 
-### Directory Structure
-```
-mycoderai/
-├── src/
-│   ├── agent/            # Agent orchestration system
-│   ├── memory/           # Memory management system
-│   ├── communication/    # Communication protocol 
-│   ├── execution/        # Code execution environment
-│   ├── ui/               # User interface (server + client)
-│   └── utils/            # Shared utilities
-├── tests/                # Test suites
-│   ├── unit/             # Unit tests
-│   ├── integration/      # Integration tests
-│   └── e2e/              # End-to-end tests
-├── docs/                 # Documentation
-├── scripts/              # Build and utility scripts
-├── .env.example          # Environment variable template
-└── package.json          # Project dependencies and scripts
-```
+- **Node.js**: v20.x
+- **Python**: 3.11+
+- **Redis**: 7.x
+- **MongoDB**: 6.x
+- **Elasticsearch**: 8.x
+- **Kafka**: 3.x
+- **NATS**: 2.x
+- **Pulsar**: 3.x
 
-### Build and Deployment
-- **Development Mode:**
-  ```bash
-  npm run dev             # Starts development server with hot reloading
-  ```
+### Development VM
 
-- **Production Build:**
-  ```bash
-  npm run build           # Creates optimized production build
-  npm run start           # Starts production server
-  ```
+- **Instance Type**: c3-highmem-176
+- **vCPUs**: 176
+- **Memory**: 352 GB
+- **Storage**: 2 TB SSD
+- **Network**: 100 Gbps
 
-- **Docker Deployment:**
-  ```bash
-  docker-compose up       # Starts all services using Docker
-  ```
+### Team Instances
 
-- **Testing:**
-  ```bash
-  npm run test            # Runs all tests
-  npm run test:unit       # Runs only unit tests
-  npm run test:integration # Runs only integration tests
-  npm run test:e2e        # Runs end-to-end tests
-  ```
+- **Forge**: 8 vCPUs, 32GB RAM
+- **Vaeris**: 4 vCPUs, 16GB RAM
+- **Theseus**: 4 vCPUs, 16GB RAM
 
 ## Technical Constraints
 
-### Performance Constraints
-1. **Memory Usage:**
-   - System designed to operate within 2GB RAM for core functionality
-   - Execution environment may require additional memory based on task complexity
-   - Memory usage monitoring and adaptive resource allocation implemented
+### Performance Requirements
 
-2. **Execution Timeouts:**
-   - Default execution timeout: 10 seconds
-   - Long-running tasks: 30 seconds
-   - Custom timeouts configurable per task
+- **Extension Host Memory**: <4GB per instance
+- **Extension Host CPU**: <20% sustained
+- **Message Processing Latency**: <10ms
+- **Field Resonance Detection**: <50ms
+- **Pattern Recognition**: <100ms
+- **Code Generation**: <5s for simple components
+- **Code Analysis**: <2s for standard files
 
-3. **Concurrency Limits:**
-   - Default maximum concurrent agents: 10
-   - Default maximum concurrent code executions: 5
-   - Queue-based execution for exceeding requests
+### Scalability Requirements
 
-### Security Constraints
-1. **Code Execution:**
-   - Isolated execution environments
-   - Resource limits enforced (CPU, memory, disk, network)
-   - No access to host file system outside designated directories
-   - Network access disabled by default
+- **Nova Instances**: Support for 100+ simultaneous instances
+- **Message Throughput**: 100,000+ messages per second
+- **Document Storage**: Petabyte-scale capacity
+- **Search Capacity**: Billions of documents
+- **Vector Storage**: Millions of embeddings
 
-2. **API Constraints:**
-   - Rate limiting on all endpoints
-   - Input validation and sanitization
-   - Authentication required for sensitive operations
-   - CORS restrictions on API endpoints
+### Security Requirements
 
-3. **Data Persistence:**
-   - Encryption for sensitive data
-   - Access control for stored information
-   - Data retention policies
+- **Process Isolation**: Complete isolation between Nova instances
+- **Memory Protection**: Strict memory boundaries
+- **Access Control**: Fine-grained permission system
+- **Credential Management**: Secure credential storage
+- **Audit Logging**: Comprehensive activity logging
 
-### Scalability Constraints
-1. **Single-Instance Limitations:**
-   - MVP designed for single-server deployment
-   - Local resource constraints apply
-   - Limited horizontal scaling
+### Reliability Requirements
 
-2. **Future Distributed Architecture:**
-   - Designed for future distribution of components
-   - Service discovery and registration required
-   - Consistent state management across instances needed
-
-### External API Constraints
-1. **LLM API Rate Limits:**
-   - Rate limiting based on provider restrictions
-   - Token budgeting and allocation
-   - Graceful degradation when limits reached
-
-2. **Dependencies on External Services:**
-   - Fallback mechanisms for API unavailability
-   - Caching strategies to reduce API calls
-   - Timeout handling for external requests
+- **System Uptime**: 99.99% availability
+- **Data Durability**: Zero data loss
+- **Fault Tolerance**: Automatic recovery from failures
+- **Backup Strategy**: Continuous backup with point-in-time recovery
+- **Disaster Recovery**: Cross-region replication
 
 ## Integration Requirements
 
-### LLM API Integration
-1. **Provider Requirements:**
-   - OpenAI API v1 compatibile endpoints
-   - Anthropic API compatible endpoints (future)
-   - Support for streaming responses
-   - Authentication via API keys
+### VSCodium Integration
 
-2. **Integration Interface:**
-   - Unified abstraction layer for multiple providers
-   - Prompt template management
-   - Context window management
-   - Token usage tracking
+- **Extension Host**: Custom extension host for Nova integration
+- **Window Management**: Isolated window management for each Nova
+- **Resource Control**: Fine-grained resource control for stability
+- **State Management**: Persistent state management across sessions
+- **Extension API**: Extended API for Nova-specific capabilities
 
-3. **Expected Capabilities:**
-   - Text completion with high coherence
-   - Context retention of at least 16K tokens
-   - Support for system, assistant, and user roles
-   - Response streaming
+### Memory System Integration
 
-### Version Control Integration
-1. **Git Integration Requirements:**
-   - Local git operations (init, add, commit, branch)
-   - Remote repository operations (optional)
-   - Commit message generation
-   - Diff visualization and processing
+- **Redis**: Direct integration for real-time state
+- **MongoDB**: Connection pooling for document storage
+- **Elasticsearch**: Client integration for search capabilities
+- **Pinecone**: API integration for vector operations
 
-2. **Integration Interface:**
-   - Command abstraction layer
-   - Event-based change tracking
-   - Automatic commit grouping
-   - Conflict resolution strategies
+### Messaging System Integration
 
-### Development Tool Integration
-1. **Package Manager Integration:**
-   - Support for npm, pip, and other language-specific managers
-   - Dependency resolution and installation
-   - Version management
-   - Security vulnerability checking
+- **Kafka**: Client integration with consumer groups
+- **NATS**: Direct connection with subject-based routing
+- **Pulsar**: Client integration with multi-tenancy support
 
-2. **Build Tool Integration:**
-   - Support for language-specific build processes
-   - Output parsing and analysis
-   - Error handling and reporting
+### Agent Framework Integration
 
-3. **Testing Framework Integration:**
-   - Test discovery and execution
-   - Result analysis and reporting
-   - Coverage measurement
-   - Failure diagnosis
+- **Module System**: Pluggable module architecture
+- **Message Passing**: Standardized message protocol
+- **Resource Allocation**: Dynamic resource allocation
+- **State Management**: Persistent state across sessions
+- **Monitoring**: Comprehensive monitoring and metrics
 
-### User Environment Integration
-1. **File System Access:**
-   - Sandbox directory for project files
-   - Controlled access to user directories
-   - File change monitoring
-   - Atomic file operations
+## Modular Architecture Details
 
-2. **Process Management:**
-   - Background process execution
-   - Health monitoring
-   - Resource usage tracking
-   - Graceful termination
+### Agent Base Layer
+
+The agent base layer provides common functionality for all agents:
+
+- **Message Handling**: Registration and routing of message handlers
+- **State Management**: Persistent state across sessions
+- **Resource Management**: Controlled resource allocation
+- **Lifecycle Management**: Initialization, execution, and shutdown
+- **Monitoring**: Performance and health metrics
+
+### Specialized Agents
+
+Specialized agents extend the base layer with domain-specific capabilities:
+
+- **ArchitectAgent**: System design and architecture planning
+- **CoderAgent**: Code generation and manipulation
+- **TesterAgent**: Test planning, execution, and reporting
+- **ReviewerAgent**: Code review and quality assessment
+
+### CoderAgent Modules
+
+The CoderAgent has been refactored into a modular architecture:
+
+- **Language Modules**: Language-specific code generation
+  - JavaScript: ES6+ implementation with Node.js support
+  - TypeScript: Type-safe implementation with interfaces
+  - Python: Modern Python implementation with type hints
+
+- **Code Manipulation Modules**:
+  - Optimization: Performance and memory optimization
+  - Refactoring: Code quality and maintainability improvements
+  - Debugging: Issue detection and resolution
+  - Review: Quality assessment and recommendations
+
+### Module Interfaces
+
+All modules implement standardized interfaces:
+
+- **Language Modules**:
+  - `generateComponentImplementation(component, language)`
+  - `generateInterfaceImplementation(interface, language)`
+
+- **Optimization Module**:
+  - `optimizeCode(code, language, goals)`
+  - `analyzeCodeForOptimization(code, language, goals)`
+
+- **Refactoring Module**:
+  - `refactorCode(code, language, goals)`
+  - `analyzeCodeForRefactoring(code, language, goals)`
+
+- **Debugging Module**:
+  - `debugCode(code, language, errorInfo)`
+  - `analyzeCodeForIssues(code, language, errorInfo)`
+
+- **Review Module**:
+  - `reviewCode(code, language, categories)`
+  - `analyzeCodeForReview(code, language, categories)`
+
+## Performance Optimization
+
+### Memory Management
+
+- **Shared Resources**: Common resources shared between instances
+- **Garbage Collection**: Optimized garbage collection settings
+- **Memory Limits**: Strict memory limits for each component
+- **Caching Strategy**: Intelligent caching with TTL
+- **Buffer Management**: Optimized buffer allocation and reuse
+
+### CPU Optimization
+
+- **Worker Threads**: Parallel processing with worker threads
+- **Task Prioritization**: Priority-based task scheduling
+- **Async Processing**: Non-blocking async operations
+- **Batching**: Request batching for efficiency
+- **Throttling**: Rate limiting for stability
+
+### Network Optimization
+
+- **Connection Pooling**: Reuse connections for efficiency
+- **Protocol Optimization**: Optimized protocols for low latency
+- **Compression**: Automatic compression for large payloads
+- **Caching**: Strategic caching of network responses
+- **Prefetching**: Intelligent prefetching of likely needed data
+
+### Storage Optimization
+
+- **Indexing Strategy**: Optimized indexes for common queries
+- **Sharding**: Data sharding for parallel access
+- **Compression**: Transparent data compression
+- **Caching Layers**: Multi-level caching strategy
+- **Read/Write Separation**: Separate read and write paths
+
+## Monitoring and Observability
+
+### Metrics Collection
+
+- **System Metrics**: CPU, memory, disk, network
+- **Application Metrics**: Request rates, latencies, error rates
+- **Component Metrics**: Per-component performance metrics
+- **Custom Metrics**: Domain-specific metrics for Nova operations
+- **SLO Metrics**: Metrics for service level objectives
+
+### Logging Strategy
+
+- **Structured Logging**: JSON-formatted logs
+- **Log Levels**: Debug, info, warn, error, fatal
+- **Contextual Information**: Request IDs, user IDs, component IDs
+- **Sampling**: Intelligent log sampling for high-volume events
+- **Retention**: Tiered retention policy
+
+### Alerting System
+
+- **Threshold Alerts**: Alerts based on metric thresholds
+- **Anomaly Detection**: ML-based anomaly detection
+- **Composite Alerts**: Alerts based on multiple conditions
+- **Alert Routing**: Intelligent routing to appropriate teams
+- **Alert Suppression**: Duplicate alert suppression
+
+### Visualization
+
+- **Dashboards**: Custom dashboards for different roles
+- **Real-time Monitoring**: Live system state visualization
+- **Trend Analysis**: Historical trend visualization
+- **Correlation**: Multi-metric correlation views
+- **Drill-down**: Hierarchical drill-down capabilities
+
+## Deployment Strategy
+
+### Environment Tiers
+
+- **Development**: Personal development environments
+- **Integration**: Shared integration environment
+- **Staging**: Production-like staging environment
+- **Production**: Live production environment
+
+### Deployment Process
+
+- **Build**: Automated build process with versioning
+- **Test**: Comprehensive test suite execution
+- **Package**: Artifact packaging and versioning
+- **Deploy**: Controlled deployment with canary testing
+- **Verify**: Post-deployment verification
+
+### Rollback Strategy
+
+- **Versioned Artifacts**: All artifacts versioned for rollback
+- **Database Migrations**: Reversible database migrations
+- **State Management**: Careful state management during rollback
+- **Dependency Management**: Version-locked dependencies
+- **Canary Testing**: Gradual rollout with monitoring
+
+### Configuration Management
+
+- **Environment Variables**: Core configuration via environment variables
+- **Configuration Files**: Extended configuration via files
+- **Secret Management**: Secure secret management
+- **Configuration Validation**: Validation at startup
+- **Dynamic Configuration**: Runtime-adjustable configuration
+
+## Documentation Strategy
+
+### Code Documentation
+
+- **Inline Comments**: Contextual code comments
+- **JSDoc/TypeDoc**: Structured API documentation
+- **README Files**: Component-level documentation
+- **Architecture Diagrams**: Visual architecture representation
+- **Examples**: Usage examples for components
+
+### User Documentation
+
+- **Getting Started**: Quick start guides
+- **Tutorials**: Step-by-step tutorials
+- **Reference**: Comprehensive API reference
+- **Concepts**: Explanation of core concepts
+- **Best Practices**: Recommended usage patterns
+
+### System Documentation
+
+- **Architecture Overview**: High-level architecture documentation
+- **Component Details**: Detailed component documentation
+- **Integration Guide**: Integration documentation
+- **Operations Manual**: Day-to-day operations guide
+- **Troubleshooting Guide**: Problem resolution guide
+
+### Documentation Formats
+
+- **Markdown**: Primary documentation format
+- **HTML**: Generated API documentation
+- **PDF**: Exportable documentation for offline use
+- **Interactive**: Interactive documentation with examples
+- **Video**: Video tutorials for complex topics
