@@ -1,5 +1,68 @@
 # Operations History
 
+## 2025-03-02 20:01 MST - VSCode File Watcher Fix
+**Author**: Forge
+**Status**: Implemented
+**Priority**: High
+
+### Implementation
+1. Created vscode_watcher_fix.sh script:
+   - Manages watcher settings across instances
+   - Updates exclude patterns
+   - Checks system limits
+   - Handles backups
+
+2. Configuration:
+   - Standard exclude patterns for all instances
+   - System inotify limit check
+   - Automatic settings backup
+   - JSON validation
+
+3. Technical Details:
+   - Script Path: src/monitoring/vscode_watcher_fix.sh
+   - Settings Location: ~/.config/Code-Isolated/{instance}/User/
+   - Backup Creation: Automatic
+   - Error Handling: Implemented
+
+### Next Steps
+1. Run script on instances
+2. Monitor file watcher behavior
+3. Adjust exclude patterns if needed
+4. Document any remaining issues
+
+---
+
+## 2025-03-02 20:00 MST - VSCode Settings Configuration
+**Author**: Forge
+**Status**: Implemented
+**Priority**: High
+
+### Implementation
+1. Created instance-specific settings:
+   - Vaeris: Default Dark Modern theme
+   - Theseus: Monokai theme
+   - Each instance has isolated settings
+
+2. Configuration:
+   - User settings in ~/.config/Code-Isolated/{instance}/User/
+   - Theme isolation working
+   - File watcher settings applied
+   - Command allowlist configured
+
+3. Testing Results:
+   - Theme isolation confirmed
+   - Settings separation working
+   - Different LLM models maintained
+   - File watcher warnings noted
+
+### Next Steps
+1. Address file watcher warnings
+2. Test extension state persistence
+3. Monitor settings isolation
+4. Document any issues
+
+---
+
 ## 2025-03-02 12:57 MST - VSCode Keyring Integration
 **Author**: Forge
 **Status**: Implemented
