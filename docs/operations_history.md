@@ -1,5 +1,38 @@
 # Operations History
 
+## 2025-03-02 20:05 MST - VSCode API Key Sync Implementation
+**Author**: Forge
+**Status**: Implemented
+**Priority**: High
+
+### Implementation
+1. Created vscode_key_sync.sh script:
+   - Manages API keys across instances
+   - Centralizes key storage
+   - Handles backups
+   - Maintains secure permissions
+
+2. Features:
+   - Global key storage
+   - Instance-specific backups
+   - Key merging capability
+   - Secure file permissions (600)
+
+3. Technical Details:
+   - Script Path: src/monitoring/vscode_key_sync.sh
+   - Storage Location: ~/.config/Code/User/globalStorage/
+   - Instance Paths:
+     * Vaeris: ~/.config/Code-Isolated/vaeris/
+     * Theseus: ~/.config/Code-Isolated/theseus/
+
+### Next Steps
+1. Run script on instances
+2. Monitor key persistence
+3. Test key synchronization
+4. Document any issues
+
+---
+
 ## 2025-03-02 20:01 MST - VSCode File Watcher Fix
 **Author**: Forge
 **Status**: Implemented
