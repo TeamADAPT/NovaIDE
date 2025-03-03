@@ -42,3 +42,27 @@ Thumbs.db
 *.tmp
 *.temp
 .cache/
+
+# VSCodium specific
+bin/
+external/
+build_env/
+user-data/
+.vscodium-isolated/
+
+# Nova IDE specific
+.nova/
+.vscodium-isolated/
+.vscode-isolated/
+
+# Large files
+*.zip
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# Sensitive information
+*.pem
+*.key
+*.cert
