@@ -1,82 +1,76 @@
 # Active Context
 
 ## Current Status
-- VSCode instance isolation implemented successfully
-- Team-specific workspaces configured
-- GNOME keyring integration established
-- Service architecture deployed
-- Quick reference guide created
+- **Project**: NovaIDE/DevOps-VSC
+- **Phase**: Implementation
+- **Last Update**: 2025-03-02 20:57 MST
+- **Updated By**: Forge
 
 ## Recent Changes
-1. Service Implementation
-   - Created systemd services for all components
-   - Configured keyring integration
-   - Set up instance isolation
-   - Established workspace separation
 
-2. Documentation
-   - Created VSCode Instance Commands guide
-   - Updated technical documentation
-   - Documented service architecture
-   - Added setup instructions
+### VSCode Team Instance Setup (Complete)
+1. Created isolated VSCode instances for team directories:
+   - Vaeris: NovaOps
+   - Theseus: DataOps
 
-3. Technical Updates
-   - Implemented keyring integration
-   - Configured service dependencies
-   - Set up resource limits
-   - Established monitoring points
+2. File Watcher Fix Script:
+   - Path: src/monitoring/vscode_watcher_fix.sh
+   - Manages watcher settings across instances
+   - Configures exclude patterns
+   - Checks system limits
+
+3. API Key Sync Script:
+   - Path: src/monitoring/vscode_key_sync.sh
+   - Global key storage
+   - Instance-specific backups
+   - Key merging capability
+   - Secure file permissions
+
+### VSCodium Migration Planning (In Progress)
+1. Migration Strategy:
+   - Path: docs/250302_VSCode_to_VSCodium_Migration.md
+   - Set up agents in final VSCodium environment
+   - Migrate settings and configurations
+   - Document transfer procedures
+
+2. Migration Script:
+   - Path: src/migrations/vscodium_migrate.sh
+   - Settings migration
+   - API key transfer
+   - Extension copying
+   - MCP configuration handling
+
+### Systemd Services (Complete)
+1. Service Files:
+   - gnome-keyring.service: Keyring daemon
+   - code-vaeris.service: NovaOps VSCode instance
+   - code-theseus.service: DataOps VSCode instance
+   - vscode-instances.target: Service orchestration
 
 ## Next Steps
 
-### Immediate (VSCodium Development)
-1. Review VSCodium build requirements
-2. Set up development environment
-3. Configure build pipeline
-4. Test extension compatibility
+1. **VSCodium Development**:
+   - Prepare VSCodium environment
+   - Test migration script on test instance
+   - Document VSCodium-specific configurations
 
-### Short Term
-1. Stability Improvements
-   - Monitor instance performance
-   - Track resource usage
-   - Log error patterns
-   - Optimize startup
+2. **Agent Setup Strategy**:
+   - Develop agent setup plan for VSCodium
+   - Create environment initialization scripts
+   - Document agent configuration procedures
 
-2. Integration Testing
-   - Verify keyring functionality
-   - Test extension behavior
-   - Monitor resource usage
-   - Track performance metrics
-
-### Long Term
-1. Automation
-   - Service deployment
-   - Configuration management
-   - Update handling
-   - Backup procedures
-
-2. Enhancement
-   - Performance optimization
-   - Resource management
-   - Error handling
-   - User experience
+3. **Code Optimization**:
+   - Review and optimize existing scripts
+   - Implement error handling enhancements
+   - Add logging capabilities
 
 ## Team Coordination
-- Vaeris: NovaOps instance active
-- Theseus: DataOps instance active
-- Forge: Development and monitoring
-- All instances: Stable and operational
 
-## Dependencies
-- GNOME keyring
-- Systemd services
-- X11 display server
-- VSCode/VSCodium
+### Forge (Lead)
+- Focus: VSCodium migration planning and agent setup
+- Current Task: Migration script development
 
-## Notes
-- Instance isolation working well
-- Keyring integration stable
-- Resource management effective
-- Team separation maintained
-
-Last Updated: 2025-03-02 14:26 MST
-Author: Forge
+### Resources
+- Documentation: /docs directory
+- Scripts: /src/monitoring and /src/migrations
+- Service Configurations: /systemd directory
