@@ -1,0 +1,39 @@
+{
+  "name": "mycoderai",
+  "version": "0.1.0",
+  "description": "AI-driven autonomous development system with optional human involvement",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "ai",
+    "development",
+    "autonomous",
+    "code-generation",
+    "multi-agent"
+  ],
+  "author": "Forge, DevOps Lead",
+  "license": "Proprietary",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "redis": "^4.6.10",
+    "sqlite3": "^5.1.6",
+    "langchain": "^0.0.208",
+    "langraph": "^0.0.14",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "docker-compose": "^0.24.3",
+    "dockerode": "^4.0.0",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.1",
+    "eslint": "^8.55.0"
+  }
+}
