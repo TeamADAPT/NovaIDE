@@ -1,0 +1,31 @@
+[Unit]
+Description=VSCode isolated instance for Forge (Enhanced Resources)
+After=gnome-keyring.service
+Requires=gnome-keyring.service
+
+[Service]
+Type=simple
+User=x
+Environment="DISPLAY=:20"
+Environment="XAUTHORITY=/home/x/.Xauthority"
+Environment="DISABLE_KEYTAR=1"
+# Ensure we don't conflict with existing VS Code instances
+Environment="VSCODE_AMD_ENTRYPOINT=1"
+Environment="VSCODE_EXTHOST_WILL_SEND_SOCKET=1"
+Environment="VSCODE_IPC_HOOK_CLI=unique_forge_vscode_ipc_hook"
+Environment="VSCODE_IPC_HOOK=unique_forge_vscode_hook"
+Environment="VSCODE_NLS_CONFIG={\"locale\":\"en\",\"availableLanguages\":{}}"
+Environment="VSCODE_CRASH_REPORTER_START_OPTIONS={\"companyName\":\"MS\",\"productName\":\"VSCodeOSS\",\"submitURL\":\"\",\"uploadToServer\":false}"
+# Enhanced resource allocation - double the standard allocation
+CPUShares=2048
+MemoryLimit=4G
+TasksMax=200
+IOWeight=800
+# Node.js specific optimizations
+Environment="NODE_OPTIONS=--max-old-space-size=4096"
+ExecStart=/usr/bin/code --user-data-dir=/home/x/.config/Code-Isolated/forge --extensions-dir=/home/x/.vscode-isolated/forge/extensions /data-nova/ax/DevOps/DevOps-VSC/NovaIDE
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=vscode-instances.target

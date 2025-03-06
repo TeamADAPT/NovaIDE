@@ -30,7 +30,7 @@ DISPLAY=:20 XAUTHORITY=/home/x/.Xauthority code \
 DISPLAY=:20 XAUTHORITY=/home/x/.Xauthority code \
   --user-data-dir=/home/x/.config/Code-Isolated/forge \
   --extensions-dir=/home/x/.vscode-isolated/forge/extensions \
-  /data-nova/ax/DevOps/DevOps-VSC/NovaIDE
+  /data-nova/ax/DevOps/DevOps-Codium
 ```
 
 

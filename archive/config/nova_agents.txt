@@ -1,0 +1,34 @@
+# Nova Agents Configuration
+# List of agent names, one per line
+# Lines starting with # are comments and will be ignored
+
+# Core agents
+architect
+coder
+tester
+reviewer
+debugger
+
+# Specialized agents
+frontend
+backend
+database
+devops
+security
+performance
+accessibility
+localization
+
+# Domain-specific agents
+ai
+blockchain
+cloud
+mobile
+iot
+gamedev
+
+# Support agents
+documentation
+research
+planning
+analysis

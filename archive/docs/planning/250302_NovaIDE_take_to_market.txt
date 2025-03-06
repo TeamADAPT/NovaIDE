@@ -1,0 +1,12 @@
+i also think this would be an ideal settng to build out our own libraries and/or SDKs, first for internal use, as i see adding to this team of yours and then for outside devs. the name on pypi.org not taken is adapt.ai or nova.ide or mycoder or mycoder.ai
+
+i see this as a viable opensource front end, giving the, the ability to setup their own backend, but also a marketable backend seemless integration offering with our adapt platform backend as a subscription based product for those that don't want ot or know how to set up their own back end.
+
+i also think this can be a all in one software dev company with added modules and different levels...what are your thoughts on this.
+
+i have a plan to start an ecosystem called MyBizAI and have fortune 500 level departments that would be offered as modules or combined in packages, and i was going to start with MyMarketingAI, but i see this as both a solution to our pain points, and others must share it, or are confined by it. I also see this attracting the non-coder and being an elegant solution for autonomous novas to allow simple paths to coding projects.
+
+my idea for the name would be MyCoderAI. I do like NovaIDE, and want that for inhouse, but...tell me your thoughts on this for a minute and let's brainstorm on the concept
+
+
+

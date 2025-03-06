@@ -1,29 +1,31 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "lib": ["ES2022", "DOM"],
-    "outDir": "build",
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020"],
+    "sourceMap": true,
     "rootDir": "src",
     "strict": true,
-    "declaration": true,
-    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "vs/*": ["src/vs/*"]
+    },
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowJs": false,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/typings"
+    ]
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "build", "**/*.test.ts"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts"
+  ]
 }

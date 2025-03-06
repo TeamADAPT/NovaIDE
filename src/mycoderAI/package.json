@@ -1,39 +1,54 @@
 {
   "name": "mycoderai",
   "version": "0.1.0",
-  "description": "AI-driven autonomous development system with optional human involvement",
-  "main": "index.js",
+  "description": "A fully autonomous AI development environment",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "jest"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest",
+    "lint": "eslint .",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamADAPT/MyCoderAI.git"
   },
   "keywords": [
     "ai",
+    "coding",
     "development",
     "autonomous",
-    "code-generation",
-    "multi-agent"
+    "ide"
   ],
-  "author": "Forge, DevOps Lead",
-  "license": "Proprietary",
+  "author": "TeamADAPT",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TeamADAPT/MyCoderAI/issues"
+  },
+  "homepage": "https://github.com/TeamADAPT/MyCoderAI#readme",
   "dependencies": {
+    "axios": "^1.6.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "langchain": "^0.0.184",
+    "mongoose": "^8.0.1",
     "socket.io": "^4.7.2",
-    "redis": "^4.6.10",
-    "sqlite3": "^5.1.6",
-    "langchain": "^0.0.208",
-    "langraph": "^0.0.14",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "docker-compose": "^0.24.3",
-    "dockerode": "^4.0.0",
+    "uuid": "^9.0.1",
     "winston": "^3.11.0"
   },
   "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.10",
+    "@types/node": "^20.9.4",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "eslint": "^8.54.0",
     "jest": "^29.7.0",
-    "nodemon": "^3.0.2",
-    "prettier": "^3.1.1",
-    "eslint": "^8.55.0"
+    "nodemon": "^3.0.1",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.2"
   }
 }

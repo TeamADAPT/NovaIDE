@@ -1,0 +1,129 @@
+{
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.preferredDarkColorTheme": "Default High Contrast",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  
+  "nova.memory.redis": {
+    "host": "localhost",
+    "port": 6379,
+    "db": 0,
+    "prefix": "nova:",
+    "ttl": 3600
+  },
+  
+  "nova.memory.mongodb": {
+    "url": "mongodb://localhost:27017",
+    "database": "nova_development",
+    "collections": {
+      "operations": "nova_operations",
+      "contexts": "nova_contexts",
+      "memory": "nova_memory"
+    }
+  },
+  
+  "nova.memory.elasticsearch": {
+    "node": "http://localhost:9200",
+    "indices": {
+      "operations": "nova-operations-{YYYY.MM}",
+      "contexts": "nova-contexts",
+      "patterns": "nova-patterns"
+    }
+  },
+
+  "nova.context": {
+    "maxContexts": 30,
+    "autoSave": true,
+    "saveInterval": 60000,
+    "persistPath": "${workspaceFolder}/.nova/contexts"
+  },
+
+  "nova.development": {
+    "enableDebugLogs": true,
+    "preserveWindowState": true,
+    "experimentalFeatures": false
+  },
+
+  "extensions.autoUpdate": true,
+  "extensions.ignoreRecommendations": false,
+  "extensions.recommendedList": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "cweijan.vscode-redis-client",
+    "mongodb.mongodb-vscode",
+    "Elastic.elasticsearch-vscode"
+  ],
+
+  "files.associations": {
+    "*.nova": "typescript",
+    "*.novarc": "jsonc"
+  },
+
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.nova/contexts": true
+  },
+
+  "editor.rulers": [80, 100],
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "bash",
+      "icon": "terminal-bash"
+    }
+  },
+
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+
+  "typescript.formatSettings": {
+    "defaultFormatter": "esbenp.prettier-vscode",
+    "formatOnSave": true,
+    "codeActionsOnSave": {
+      "source.organizeImports": true,
+      "source.fixAll.eslint": true
+    }
+  },
+
+  "javascript.formatSettings": {
+    "defaultFormatter": "esbenp.prettier-vscode",
+    "formatOnSave": true,
+    "codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+
+  "debug.javascript.autoAttachFilter": "smart",
+  "debug.javascript.terminalOptions": {
+    "skipFiles": [
+      "<node_internals>/**",
+      "**/node_modules/**"
+    ]
+  },
+
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/.nova/contexts/**": true,
+    "**/dist/**": true
+  },
+
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/dist": true
+  }
+}
